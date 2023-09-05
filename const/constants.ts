@@ -5,8 +5,8 @@ export const factoryAddress: string = '0x02101dfB77FDE026414827Fdc604ddAF224F092
 export const implementation: string = '0xf5df23e81cfD6c5FB25A1dDE9a4a80c03B7e7F39'
 
 // Your thirdweb api key - you can get one at https://thirdweb.com/dashboard/api-keys
-export const TWApiKey: string = process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID || ''
+export const TWApiKey: string = process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID || 'pk-1a89b3cf54477f603ed110836df4b182a7c3bb079bae708b'
 export const activeChain: Chain = Mumbai
 
-export const nftDropAddress: string = '0xE0EDdB4df871a023c3e72E72185c3ccbF6F2E58F'
-export const tokenAddress: string = '0x006eF094e2DF803074Ef7Bce35994771a87a6fca'
+export const nftDropAddress: string = '0xaa0C8c7A4dE7Be08956B67778ECBf5F279f1Ae5A'
+export const tokenAddress: string = '0x893ec38C6e3539fd3796E9b37FA2624EeD123fe0'
