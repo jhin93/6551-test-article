@@ -11,13 +11,12 @@ import { NFT, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import {
   activeChain,
   nftDropAddress,
-  TWApiKey,
 } from "../../../const/constants";
 import styles from "../../../styles/Token.module.css";
 import { Toaster } from "react-hot-toast";
 import { Signer } from "ethers";
-import newSmartWallet from "../../../components/SmartWallet/SmartWallet";
 import SmartWalletConnected from "../../../components/SmartWallet/smartConnected";
+import CreateSmartWallet from "../../../components/SmartWallet/CreateSmartWallet";
 
 type Props = {
   nft: NFT;
@@ -36,23 +35,16 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
 
   // create a smart wallet for the NFT
   useEffect(() => {
-    const createSmartWallet = async (nft: NFT) => {
-      if (nft && smartWalletAddress == null && address && wallet) {
-        const smartWallet = newSmartWallet(nft);
-        console.log("personal wallet", address);
-        await smartWallet.connect({
-          personalWallet: wallet,
-        });
-        setSigner(await smartWallet.getSigner());
-        console.log("signer", signer);
-        setSmartWalletAddress(await smartWallet.getAddress());
-        console.log("smart wallet address", await smartWallet.getAddress());
-        return smartWallet;
+    const createWallet = async () => {
+      const walletData = await CreateSmartWallet(nft, address, wallet);
+      if (walletData) {
+        setSigner(walletData.signer);
+        setSmartWalletAddress(walletData.smartWalletAddress);
       } else {
         console.log("smart wallet not created");
       }
     };
-    createSmartWallet(nft);
+    createWallet();
   }, [nft, smartWalletAddress, address, wallet]);
 
   return (
