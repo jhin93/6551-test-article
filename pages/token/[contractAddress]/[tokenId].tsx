@@ -72,6 +72,11 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
             <h1 className={styles.title}>{nft.metadata.name}</h1>
             <p className={styles.collectionName}>Token ID #{nft.metadata.id}</p>
             {smartWalletAddress ? (
+                <p className={styles.collectionName}>Smart Wallet Address : {smartWalletAddress}</p>
+            ) : (
+                <p className={styles.collectionName}>failed to fetch Smart Wallet Address : {smartWalletAddress}</p>
+            )}
+            {smartWalletAddress ? (
               <SmartWalletConnected signer={signer} />
             ) : (
               <div className={styles.btnContainer}>
