@@ -24,7 +24,7 @@ type Props = {
 };
 
 export default function TokenPage({ nft, contractMetadata }: Props) {
-  const [smartWalletAddress, setSmartWalletAddress] = useState<string | null>(
+  const [tokenBoundAccount, setTokenBoundAccount] = useState<string | null>(
     null
   );
   const [signer, setSigner] = useState<Signer>();
@@ -39,13 +39,13 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
       const walletData = await CreateSmartWallet(nft, address, wallet);
       if (walletData) {
         setSigner(walletData.signer);
-        setSmartWalletAddress(walletData.smartWalletAddress);
+        setTokenBoundAccount(walletData.tokenBoundAccount);
       } else {
         console.log("smart wallet not created");
       }
     };
     createWallet();
-  }, [nft, smartWalletAddress, address, wallet]);
+  }, [nft, tokenBoundAccount, address, wallet]);
 
   return (
     <>
@@ -71,12 +71,12 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
             )}
             <h1 className={styles.title}>{nft.metadata.name}</h1>
             <p className={styles.collectionName}>Token ID #{nft.metadata.id}</p>
-            {smartWalletAddress ? (
-                <p className={styles.collectionName}>Smart Wallet Address : {smartWalletAddress}</p>
+            {tokenBoundAccount ? (
+                <p className={styles.collectionName}>Smart Wallet Address : {tokenBoundAccount}</p>
             ) : (
-                <p className={styles.collectionName}>failed to fetch Smart Wallet Address : {smartWalletAddress}</p>
+                <p className={styles.collectionName}>failed to fetch Smart Wallet Address : {tokenBoundAccount}</p>
             )}
-            {smartWalletAddress ? (
+            {tokenBoundAccount ? (
               <SmartWalletConnected signer={signer} />
             ) : (
               <div className={styles.btnContainer}>

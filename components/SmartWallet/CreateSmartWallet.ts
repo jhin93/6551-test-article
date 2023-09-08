@@ -11,9 +11,9 @@ const CreateSmartWallet = async (nft: any, address: any, wallet: any) => {
         });
         const signer = await smartWallet.getSigner();
         console.log("signer", signer);
-        const smartWalletAddress = await smartWallet.getAddress();
-        console.log("smart wallet address", smartWalletAddress);
-        return { smartWallet, signer, smartWalletAddress };
+        const tokenBoundAccount = await smartWallet.getAddress();
+        console.log("token bound account address", tokenBoundAccount);
+        return { smartWallet, signer, tokenBoundAccount };
     } else {
         console.log("smart wallet not created");
         return null;
