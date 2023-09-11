@@ -7,11 +7,13 @@ import {
   useOwnedNFTs, ThirdwebNftMedia
 } from "@thirdweb-dev/react";
 import React from "react";
-import { activeChain, tokenAddress, TWApiKey, ERC721_ADDRESS } from "../../const/constants";
+import {activeChain, tokenAddress, TWApiKey, ERC721_ADDRESS, nftDropAddress} from "../../const/constants";
 import { Signer } from "ethers";
 import style from "../../styles/Token.module.css";
 import toast from "react-hot-toast";
 import toastStyle from "../../util/toastConfig";
+import styles from "styles/Main.module.css";
+import Link from "next/link";
 interface ConnectedProps {
   signer: Signer | undefined;
 }
@@ -100,10 +102,15 @@ const ClaimTokens = () => {
                 <div>
                   {ownedNFTs && ownedNFTs.length > 0 ? (
                       ownedNFTs.map((nft) => (
+                          <Link
+                              href={`/token/${ERC721_ADDRESS}/${nft.metadata.id}`}
+                              key={nft.metadata.id}
+                          >
                           <div key={nft.metadata.id}>
                             <ThirdwebNftMedia metadata={nft.metadata} />
                             <p>{nft.metadata.name}</p>
                           </div>
+                          </Link>
                       ))
                   ) : (
                       <p>You have no NFTS</p>
