@@ -7,7 +7,7 @@ import {
   useOwnedNFTs, ThirdwebNftMedia
 } from "@thirdweb-dev/react";
 import React from "react";
-import { activeChain, tokenAddress, TWApiKey, MINT721_ADDRESS } from "../../const/constants";
+import { activeChain, tokenAddress, TWApiKey, ERC721_ADDRESS } from "../../const/constants";
 import { Signer } from "ethers";
 import style from "../../styles/Token.module.css";
 import toast from "react-hot-toast";
@@ -36,7 +36,7 @@ const ClaimTokens = () => {
 
   const {
     contract
-  } = useContract(MINT721_ADDRESS);
+  } = useContract(ERC721_ADDRESS);
 
   const {
       data: ownedNFTs,
@@ -44,17 +44,19 @@ const ClaimTokens = () => {
   } = useOwnedNFTs(contract, address)
 
   const metadata = {
-    "name": "402_Edit Texture",
-    "description": "\nMinted By CLO Virtual Fashion\n\nView Website : https://connect.clo-set.com/detail/28f156b9293d4fd780f1cf21d51cc83e\n\nCONNECT Creator E-mail : jhin@clo3d.com\n\nCONNECT Creator Address : 0x28cAB8f74cC7eFA51845e8d11C22636De13Bf430\n\nCONNECT Item Code : 23081800030\n\nItem Description : Check pattern with black and light gray\n",
-    "imageAlt": "https://storagefiles.clo-set.com/public/marketplace/202308/28f156b9293d4fd780f1cf21d51cc83e/1/thumbnail/402_Edit%20Texture.png?verify=1692340956-dx6ekGjNHN628gATp%2fhP9gZ%2fsl9VvNscxbQuAOfgREs%3d",
-    "external_url": "https://connect.clo-set.com/detail/28f156b9293d4fd780f1cf21d51cc83e",
+    "name": "certification_wallet_tba",
+    "description": "This is test ERC-721 NFT for test TBA",
+    "image": "ipfs://QmPtnAXSb5a88wS77tZAnzvUBFubCzSfa46FZrxv9Jdo5C/certificate_test.jpeg",
+    "external_url": "",
+    "background_color": "",
     "attributes": [
       {
-        "trait_type": "type",
-        "value": "Garment"
+        "trait_type": "creator",
+        "value": "jhin"
       }
     ],
-    "image": "https://caa2c003a548f6091241c33268082739.ipfscdn.io/ipfs/bafybeidzsrivpmfseozuccv6cczwwglchv7uy4xbcizm6ri2hxkqgpteiu/"
+    "customImage": "",
+    "customAnimationUrl": ""
   }
 
   return (
@@ -88,9 +90,9 @@ const ClaimTokens = () => {
               Claim 10 Tokens
             </Web3Button>
             <br />
-            <h2>Claim NFT:</h2>
-            <Web3Button contractAddress={MINT721_ADDRESS} action={(contract) => contract.erc721.mint(metadata)}>
-              Claim NFT
+            <h2>Mint Wallet NFT:</h2>
+            <Web3Button contractAddress={ERC721_ADDRESS} action={(contract) => contract.erc721.mint(metadata)}>
+              Create TBA(NFT)
             </Web3Button>
             {ownedNFTsIsLoading ? (
                 <p>Loading...</p>
@@ -101,7 +103,6 @@ const ClaimTokens = () => {
                           <div key={nft.metadata.id}>
                             <ThirdwebNftMedia metadata={nft.metadata} />
                             <p>{nft.metadata.name}</p>
-                            <p>QTY : {nft.quantityOwned}</p>
                           </div>
                       ))
                   ) : (
