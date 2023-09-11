@@ -7,7 +7,7 @@ import {
   useOwnedNFTs, ThirdwebNftMedia
 } from "@thirdweb-dev/react";
 import React from "react";
-import { activeChain, tokenAddress, TWApiKey, EDITIONDROP_ADDRESS, MINT721_ADDRESS } from "../../const/constants";
+import { activeChain, tokenAddress, TWApiKey, MINT721_ADDRESS } from "../../const/constants";
 import { Signer } from "ethers";
 import style from "../../styles/Token.module.css";
 import toast from "react-hot-toast";
@@ -36,7 +36,7 @@ const ClaimTokens = () => {
 
   const {
     contract
-  } = useContract(EDITIONDROP_ADDRESS);
+  } = useContract(MINT721_ADDRESS);
 
   const {
       data: ownedNFTs,
