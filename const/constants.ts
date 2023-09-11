@@ -11,3 +11,5 @@ export const activeChain: Chain = Mumbai
 export const nftDropAddress: string = '0xaa0C8c7A4dE7Be08956B67778ECBf5F279f1Ae5A'
 export const tokenAddress: string = '0x893ec38C6e3539fd3796E9b37FA2624EeD123fe0'
 export const EDITIONDROP_ADDRESS = '0xB470B4D174231A7A37b4967C80B6254Cc922aD31'
+
+export const MINT721_ADDRESS = '0x47e1897cC6b22870d6439Bae095e579dC202197D'

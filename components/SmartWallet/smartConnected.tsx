@@ -7,7 +7,7 @@ import {
   useOwnedNFTs, ThirdwebNftMedia
 } from "@thirdweb-dev/react";
 import React from "react";
-import { activeChain, tokenAddress, TWApiKey, EDITIONDROP_ADDRESS } from "../../const/constants";
+import { activeChain, tokenAddress, TWApiKey, EDITIONDROP_ADDRESS, MINT721_ADDRESS } from "../../const/constants";
 import { Signer } from "ethers";
 import style from "../../styles/Token.module.css";
 import toast from "react-hot-toast";
@@ -43,6 +43,20 @@ const ClaimTokens = () => {
       isLoading: ownedNFTsIsLoading,
   } = useOwnedNFTs(contract, address)
 
+  const metadata = {
+    "name": "402_Edit Texture",
+    "description": "\nMinted By CLO Virtual Fashion\n\nView Website : https://connect.clo-set.com/detail/28f156b9293d4fd780f1cf21d51cc83e\n\nCONNECT Creator E-mail : jhin@clo3d.com\n\nCONNECT Creator Address : 0x28cAB8f74cC7eFA51845e8d11C22636De13Bf430\n\nCONNECT Item Code : 23081800030\n\nItem Description : Check pattern with black and light gray\n",
+    "imageAlt": "https://storagefiles.clo-set.com/public/marketplace/202308/28f156b9293d4fd780f1cf21d51cc83e/1/thumbnail/402_Edit%20Texture.png?verify=1692340956-dx6ekGjNHN628gATp%2fhP9gZ%2fsl9VvNscxbQuAOfgREs%3d",
+    "external_url": "https://connect.clo-set.com/detail/28f156b9293d4fd780f1cf21d51cc83e",
+    "attributes": [
+      {
+        "trait_type": "type",
+        "value": "Garment"
+      }
+    ],
+    "image": "https://caa2c003a548f6091241c33268082739.ipfscdn.io/ipfs/bafybeidzsrivpmfseozuccv6cczwwglchv7uy4xbcizm6ri2hxkqgpteiu/"
+  }
+
   return (
     <div className={style.walletContainer}>
       <h2>This is Your Token Bound Smart Wallet!</h2>
@@ -75,7 +89,7 @@ const ClaimTokens = () => {
             </Web3Button>
             <br />
             <h2>Claim NFT:</h2>
-            <Web3Button contractAddress={EDITIONDROP_ADDRESS} action={(contract) => contract.erc1155.claim(0, 1)}>
+            <Web3Button contractAddress={MINT721_ADDRESS} action={(contract) => contract.erc721.mint(metadata)}>
               Claim NFT
             </Web3Button>
             {ownedNFTsIsLoading ? (
