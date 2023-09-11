@@ -1,4 +1,4 @@
-// CreateSmartWallet.js
+
 import newSmartWallet from "./SmartWallet";
 
 const CreateSmartWallet = async (nft: any, address: any, wallet: any) => {

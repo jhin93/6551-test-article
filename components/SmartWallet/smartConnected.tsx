@@ -44,9 +44,9 @@ const ClaimTokens = () => {
   } = useOwnedNFTs(contract, address)
 
   const metadata = {
-    "name": "certification_wallet_tba",
-    "description": "This is test ERC-721 NFT for test TBA",
-    "image": "ipfs://QmPtnAXSb5a88wS77tZAnzvUBFubCzSfa46FZrxv9Jdo5C/certificate_test.jpeg",
+    "name": "new_item",
+    "description": "Wallet for new item",
+    "image": "ipfs://QmY3MAiqk9efYjhnKxZFPjvLspoVR6z7CqvwvfmvX1EZak/123.png",
     "external_url": "",
     "background_color": "",
     "attributes": [
