@@ -7,12 +7,11 @@ import {
   useOwnedNFTs, ThirdwebNftMedia
 } from "@thirdweb-dev/react";
 import React from "react";
-import {activeChain, tokenAddress, TWApiKey, ERC721_ADDRESS, nftDropAddress} from "../../const/constants";
+import {activeChain, tokenAddress, TWApiKey, ERC721_ADDRESS} from "../../const/constants";
 import { Signer } from "ethers";
 import style from "../../styles/Token.module.css";
 import toast from "react-hot-toast";
 import toastStyle from "../../util/toastConfig";
-import styles from "styles/Main.module.css";
 import Link from "next/link";
 interface ConnectedProps {
   signer: Signer | undefined;
@@ -93,7 +92,7 @@ const ClaimTokens = () => {
             </Web3Button>
             <br />
             <h2>Mint Wallet NFT:</h2>
-            <Web3Button contractAddress={ERC721_ADDRESS} action={(contract) => contract.erc721.mint(metadata)}>
+            <Web3Button contractAddress={ERC721_ADDRESS} action={(contract) => contract.erc721.transfer("0x0f39A4f62CfB28B2b7316A88ed6567D20ae3c1D0", 5)}>
               Create TBA(NFT)
             </Web3Button>
             {ownedNFTsIsLoading ? (
@@ -106,10 +105,10 @@ const ClaimTokens = () => {
                               href={`/token/${ERC721_ADDRESS}/${nft.metadata.id}`}
                               key={nft.metadata.id}
                           >
-                          <div key={nft.metadata.id}>
-                            <ThirdwebNftMedia metadata={nft.metadata} />
-                            <p>{nft.metadata.name}</p>
-                          </div>
+                            <div key={nft.metadata.id}>
+                              <ThirdwebNftMedia metadata={nft.metadata} />
+                              <p>{nft.metadata.name}</p>
+                            </div>
                           </Link>
                       ))
                   ) : (

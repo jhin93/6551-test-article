@@ -11,12 +11,14 @@ import { NFT, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import {
   activeChain,
   nftDropAddress,
+  ERC721_ADDRESS
 } from "../../../const/constants";
 import styles from "../../../styles/Token.module.css";
 import { Toaster } from "react-hot-toast";
 import { Signer } from "ethers";
 import SmartWalletConnected from "../../../components/SmartWallet/smartConnected";
 import CreateSmartWallet from "../../../components/SmartWallet/CreateSmartWallet";
+import {useRouter} from "next/router";
 
 type Props = {
   nft: NFT;
@@ -124,6 +126,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const contract = await sdk.getContract(nftDropAddress);
 
   const nfts = await contract.erc721.getAll();
+
+  // let contractAddr: any;
+  // const setContractAddr = (addr: any) => {
+  //   if(addr === nftDropAddress){
+  //     contractAddr = nftDropAddress
+  //   } else if (addr === ERC721_ADDRESS) {
+  //     contractAddr = ERC721_ADDRESS
+  //   }
+  // }
+  // console.log("Contract Address : ", contractAddr)
 
   const paths = nfts.map((nft) => {
     return {
