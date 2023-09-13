@@ -7,7 +7,7 @@ import {
   useOwnedNFTs, ThirdwebNftMedia
 } from "@thirdweb-dev/react";
 import React from "react";
-import {activeChain, tokenAddress, TWApiKey, ERC721_ADDRESS, TokenBoundContract} from "../../const/constants";
+import {activeChain, tokenAddress, TWApiKey, ERC721_ADDRESS} from "../../const/constants";
 import { Signer } from "ethers";
 import style from "../../styles/Token.module.css";
 import toast from "react-hot-toast";

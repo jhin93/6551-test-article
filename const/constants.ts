@@ -6,6 +6,7 @@ export const implementation: string = '0xf5df23e81cfD6c5FB25A1dDE9a4a80c03B7e7F3
 
 // Your thirdweb api key - you can get one at https://thirdweb.com/dashboard/api-keys
 export const TWApiKey: string = process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID || ''
+export const TW_SECRET_KEY: any = process.env.TW_SECRET_KEY
 export const activeChain: Chain = Mumbai
 
 export const nftDropAddress: string = '0xaa0C8c7A4dE7Be08956B67778ECBf5F279f1Ae5A'
