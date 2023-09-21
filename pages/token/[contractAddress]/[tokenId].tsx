@@ -1,8 +1,7 @@
 import {
   MediaRenderer,
   ThirdwebNftMedia,
-  useAddress,
-  useWallet,
+  useAddress
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
 import Container from "../../../components/Container/Container";
@@ -18,7 +17,6 @@ import { Toaster } from "react-hot-toast";
 import { Signer } from "ethers";
 import SmartWalletConnected from "../../../components/SmartWallet/smartConnected";
 import CreateSmartWallet from "../../../components/SmartWallet/CreateSmartWallet";
-import {useRouter} from "next/router";
 
 type Props = {
   nft: NFT;
@@ -32,13 +30,15 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
   const [signer, setSigner] = useState<Signer>();
 
   // get the currently connected wallet
-  const address = useAddress();
-  const wallet = useWallet();
+  const address = "0x0f39A4f62CfB28B2b7316A88ed6567D20ae3c1D0";
+
+  console.log("address : ", address)
+  console.log("nft : ", nft)
 
   // create a smart wallet for the NFT
   useEffect(() => {
     const createWallet = async () => {
-      const walletData = await CreateSmartWallet(nft, address, wallet);
+      const walletData = await CreateSmartWallet(nft, address);
       if (walletData) {
         setSigner(walletData.signer);
         setTokenBoundAccount(walletData.tokenBoundAccount);
@@ -47,7 +47,9 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
       }
     };
     createWallet();
-  }, [nft, tokenBoundAccount, address, wallet]);
+  }, [nft, tokenBoundAccount, address]);
+
+  console.log("tokenBoundAccount : ", tokenBoundAccount)
 
   return (
     <>
@@ -126,17 +128,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const contract = await sdk.getContract(nftDropAddress);
 
   const nfts = await contract.erc721.getAll();
-
-  // let contractAddr: any;
-  // const setContractAddr = (addr: any) => {
-  //   if(addr === nftDropAddress){
-  //     contractAddr = nftDropAddress
-  //   } else if (addr === ERC721_ADDRESS) {
-  //     contractAddr = ERC721_ADDRESS
-  //   }
-  // }
-  // console.log("Contract Address : ", contractAddr)
-
   const paths = nfts.map((nft) => {
     return {
       params: {
