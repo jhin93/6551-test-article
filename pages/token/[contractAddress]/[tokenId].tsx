@@ -30,15 +30,15 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
   const [signer, setSigner] = useState<Signer>();
 
   // get the currently connected wallet
-  const address = "0x0f39A4f62CfB28B2b7316A88ed6567D20ae3c1D0";
-
-  console.log("address : ", address)
+  // const address = "0x0f39A4f62CfB28B2b7316A88ed6567D20ae3c1D0";
+  //
+  // console.log("address : ", address)
   console.log("nft : ", nft)
 
   // create a smart wallet for the NFT
   useEffect(() => {
     const createWallet = async () => {
-      const walletData = await CreateSmartWallet(nft, address);
+      const walletData = await CreateSmartWallet(nft);
       if (walletData) {
         setSigner(walletData.signer);
         setTokenBoundAccount(walletData.tokenBoundAccount);
@@ -47,7 +47,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
       }
     };
     createWallet();
-  }, [nft, tokenBoundAccount, address]);
+  }, [nft, tokenBoundAccount]);
 
   console.log("tokenBoundAccount : ", tokenBoundAccount)
 

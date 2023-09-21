@@ -2,14 +2,14 @@
 import newSmartWallet from "./SmartWallet";
 import { LocalWallet } from "@thirdweb-dev/wallets";
 
-const CreateSmartWallet = async (nft: any, address: any) => {
+const CreateSmartWallet = async (nft: any) => {
     const personalWallet = new LocalWallet();
     console.log("Local Wallet Instance: ", personalWallet)
     await personalWallet.generate();
 
-    if (nft && address) {
+    if (nft) {
         const smartWallet = newSmartWallet(nft);
-        console.log("Local Wallet Address : ", address);
+        // console.log("Local Wallet Address : ", address);
         await smartWallet.connect({
             personalWallet,
         });
