@@ -29,7 +29,7 @@ export default function newSmartWallet(token: NFT) {
           activeChain.chainId,
           nftDropAddress,
           token.metadata.id,
-          0,
+          3,
           ethers.utils.toUtf8Bytes("")
         ]);
         console.log("here", account);
@@ -44,7 +44,7 @@ export default function newSmartWallet(token: NFT) {
           activeChain.chainId,
           nftDropAddress,
           token.metadata.id,
-          0
+          3
         ]);
       }, // the factory method to call to get the account address
     },
